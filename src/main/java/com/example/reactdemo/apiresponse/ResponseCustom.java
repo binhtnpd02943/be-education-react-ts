@@ -14,10 +14,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 
- * @author binhtn1
- *
  * @param <T>
+ * @author binhtn1
  */
 @Data
 public class ResponseCustom<T> {

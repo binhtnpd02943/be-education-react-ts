@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * 
  * @author binhtn1
- *
  */
 @Repository
 public interface UserRepository extends JpaRepository<ApplicationUser, Integer> {
@@ -25,8 +23,7 @@ public interface UserRepository extends JpaRepository<ApplicationUser, Integer> 
     @Query(value = "SELECT concat(ifNull(REGEXP_SUBSTR(username,'[0-9]+'),'0'),'0') DIV 10 FROM application_user WHERE username like :name order by  username DESC limit 1;\n"
             + "", nativeQuery = true)
     Integer getLastNumberOfAccountName(@Param("name") String name);
-    
-    
+
 
     @Modifying
     @Transactional
@@ -36,6 +33,7 @@ public interface UserRepository extends JpaRepository<ApplicationUser, Integer> 
     /**
      * Xóa User multiple usernames
      * usernames
+     *
      * @param ids
      */
     @Modifying
@@ -49,7 +47,7 @@ public interface UserRepository extends JpaRepository<ApplicationUser, Integer> 
 
     @Query(value = "SELECT * FROM application_user WHERE delete_flag = 0 AND role_id <> 1 AND id IN(:ids)", nativeQuery = true)
     List<ApplicationUser> findAllByIds(List<Integer> ids);
-    
+
     @Query(value = "SELECT * FROM application_user WHERE delete_flag = 0 AND role_id <> 1 AND id IN(:ids)", nativeQuery = true)
     public List<ApplicationUser> getUserPrintData(List<Integer> ids);
 }

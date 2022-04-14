@@ -1,19 +1,5 @@
 package com.example.reactdemo.services.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.reactdemo.apiresponse.ResponseCustom;
 import com.example.reactdemo.dtos.IdsModel;
 import com.example.reactdemo.dtos.ProcessStatusModel;
@@ -30,11 +16,22 @@ import com.example.reactdemo.services.UserService;
 import com.example.reactdemo.utils.Helper;
 import com.example.reactdemo.utils.JwtUtils;
 import com.example.reactdemo.utils.MessageUtil;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * 
  * @author binhtn1
- *
  */
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -46,7 +43,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private MajorService majorService;
 
     public UserServiceImpl(UserRepository userRepository, ClassRoomService classRoomService,
-            BCryptPasswordEncoder bCryptPasswordEncoder, JwtUtils jwtUtils, MajorService majorService) {
+                           BCryptPasswordEncoder bCryptPasswordEncoder, JwtUtils jwtUtils, MajorService majorService) {
         this.userRepository = userRepository;
         this.classRoomService = classRoomService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -71,9 +68,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
      * In Danh sách người dùng
      */
     @Override
-    public ResponseEntity<?> print(IdsModel ids) {
+    public ResponseEntity<?> getListPrint(IdsModel ids) {
         ResponseCustom<?> response = new ResponseCustom<>(HttpStatus.OK, MessageUtil.getMessage("success"),
-                userRepository.getUserPrintData(ids.getIds()));
+                userRepository.findAllByIds(ids.getIds()));
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
@@ -385,8 +382,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     /**
      * Delete multiple user
-     * 
-     * @param usernames
+     *
+     * @param ids
      * @return
      */
     public ProcessStatusModel deletes(IdsModel ids) {

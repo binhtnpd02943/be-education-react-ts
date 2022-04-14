@@ -1,9 +1,7 @@
 package com.example.reactdemo.configs;
 
 /**
- * 
  * @author binhtn1
- *
  */
 public class SecurityConstants {
     // Secret key of json web token
@@ -20,6 +18,4 @@ public class SecurityConstants {
 
     // Url login
     public static final String LOGIN_URL = "/auth/login";
-    //Url Class
-    public static final String CLASS_ROOM = "/classrooms";
 }

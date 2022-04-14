@@ -23,9 +23,7 @@ import com.example.reactdemo.filters.AuthTokenFilter;
 import com.example.reactdemo.services.impl.UserServiceImpl;;
 
 /**
- * 
  * @author binhtn1
- *
  */
 @Configuration
 @EnableWebSecurity
@@ -38,6 +36,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     /**
      * Injection dependencies
+     *
      * @param userDetailsService
      * @param unauthorizedHandler
      * @param bCryptPasswordEncoder
@@ -64,6 +63,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     /**
      * Config filter, request authenticated,...
+     *
      * @param http
      * @throws Exception
      */
@@ -83,6 +83,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     /**
      * Config password encoder for spring security
+     *
      * @param auth
      * @throws Exception
      */
@@ -102,7 +103,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         configuration.setAllowCredentials(true);
         configuration.addAllowedOriginPattern("*");
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With","Origin","Content-Type","Accept","Authorization"));
+        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
         configuration.addExposedHeader("Authorization");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

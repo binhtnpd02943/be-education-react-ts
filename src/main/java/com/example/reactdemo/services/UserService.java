@@ -10,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 /**
- * 
  * @author binhtn1
- *
  */
 public interface UserService {
 
@@ -117,8 +115,8 @@ public interface UserService {
 
     /**
      * Delete multiple user
-     * 
-     * @param username
+     *
+     * @param usernames
      * @return
      */
     ProcessStatusModel deletes(IdsModel usernames);
@@ -126,5 +124,5 @@ public interface UserService {
     /**
      * In Danh sách người dùng
      */
-    ResponseEntity<?> print(IdsModel ids);
+    ResponseEntity<?> getListPrint(IdsModel ids);
 }
